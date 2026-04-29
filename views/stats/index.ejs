@@ -1,0 +1,65 @@
+<%- include("../partials/head") %>
+<%- include("../partials/header") %>
+
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Analytics Module</p>
+    <h1>Page Statistics</h1>
+    <p class="lead">Simple page-level tracking using SQLite and middleware-based counters.</p>
+  </div>
+</section>
+
+<section class="stats-grid">
+  <article class="card stat-card">
+    <p class="stat-label">Tracked Pages</p>
+    <p class="stat-value"><%= overview?.tracked_pages || 0 %></p>
+  </article>
+  <article class="card stat-card">
+    <p class="stat-label">Total Views</p>
+    <p class="stat-value"><%= overview?.total_views || 0 %></p>
+  </article>
+  <article class="card stat-card">
+    <p class="stat-label">Last Visit</p>
+    <p class="stat-value stat-value-small">
+      <%= overview?.last_visited_at || "No tracked visits yet" %>
+    </p>
+  </article>
+</section>
+
+<section class="card">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Ranking</p>
+      <h2>Top Pages</h2>
+    </div>
+  </div>
+
+  <% if (!topPages.length) { %>
+    <p class="empty-state">No statistics recorded yet.</p>
+  <% } else { %>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Path</th>
+            <th>Title</th>
+            <th>Views</th>
+            <th>Last Visit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% topPages.forEach((page) => { %>
+            <tr>
+              <td><code><%= page.path %></code></td>
+              <td><%= page.title || page.path %></td>
+              <td><%= page.view_count %></td>
+              <td><%= page.last_visited_at || "N/A" %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+</section>
+
+<%- include("../partials/footer") %>

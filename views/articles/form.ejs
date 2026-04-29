@@ -1,0 +1,148 @@
+<%- include("../partials/head", {
+  pageStyles: [
+    "https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css",
+    "https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css"
+  ]
+}) %>
+<%- include("../partials/header") %>
+
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Content Editor</p>
+    <h1><%= formTitle %></h1>
+    <p class="lead">
+      Write articles in Markdown with live preview, structured metadata, and
+      comma-separated tags for editorial organization.
+    </p>
+  </div>
+  <a class="button button-secondary" href="/articles">Back to Articles</a>
+</section>
+
+<section class="card form-card">
+  <% if (errorMessage) { %>
+    <div class="alert alert-error"><%= errorMessage %></div>
+  <% } %>
+
+  <form
+    class="stack-form article-editor-form"
+    method="POST"
+    action="<%= formAction %>"
+    data-article-editor-form
+  >
+    <div class="form-grid">
+      <label>
+        <span>Title</span>
+        <input
+          type="text"
+          name="title"
+          value="<%= article.title %>"
+          placeholder="Enter article title"
+          required
+        />
+      </label>
+
+      <label>
+        <span>Category</span>
+        <select name="categoryId">
+          <option value="">Uncategorized</option>
+          <% categories.forEach((category) => { %>
+            <option
+              value="<%= category.id %>"
+              <%= String(article.categoryId) === String(category.id) ? "selected" : "" %>
+            >
+              <%= category.name %>
+            </option>
+          <% }) %>
+        </select>
+      </label>
+
+      <label>
+        <span>Tags</span>
+        <input
+          type="text"
+          name="tags"
+          value="<%= article.tags %>"
+          placeholder="nodejs, express, sqlite, markdown"
+          data-tag-input
+        />
+        <small class="field-help">Enter multiple tags separated by commas.</small>
+      </label>
+
+      <label>
+        <span>Reading Time</span>
+        <input
+          type="number"
+          min="1"
+          name="readingTime"
+          value="<%= article.readingTime %>"
+          placeholder="5"
+        />
+      </label>
+
+      <label>
+        <span>Publish Date</span>
+        <input
+          type="datetime-local"
+          name="publishedAt"
+          value="<%= article.publishedAt %>"
+        />
+      </label>
+    </div>
+
+    <div class="tag-preview-wrap">
+      <p class="field-label">Parsed Tags</p>
+      <div class="tag-preview" data-tag-preview></div>
+    </div>
+
+    <label>
+      <span>Summary / Excerpt</span>
+      <textarea
+        name="excerpt"
+        rows="4"
+        placeholder="Short introduction for article cards"
+        data-summary-field
+      ><%= article.excerpt %></textarea>
+      <small class="field-help">
+        Keep this concise. If left empty, the editor will suggest a short
+        summary from the Markdown content.
+      </small>
+    </label>
+
+    <section class="editor-panel">
+      <div class="editor-panel-header">
+        <div>
+          <p class="eyebrow">Markdown Editor</p>
+          <h2>Content</h2>
+        </div>
+        <p class="field-help">
+          Toolbar supports bold, italic, headers, links, images, code blocks,
+          preview, and side-by-side mode.
+        </p>
+      </div>
+
+      <label class="markdown-field">
+        <span>Markdown Content</span>
+        <textarea
+          id="markdownContent"
+          name="content"
+          rows="16"
+          placeholder="Write the article in Markdown..."
+          required
+          data-markdown-editor
+        ><%= article.content %></textarea>
+      </label>
+    </section>
+
+    <div class="card-actions">
+      <button class="button" type="submit"><%= submitLabel %></button>
+      <a class="button button-secondary" href="/articles">Cancel</a>
+    </div>
+  </form>
+</section>
+
+<%- include("../partials/footer", {
+  pageScripts: [
+    "https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js",
+    "/js/article-editor.js"
+  ]
+}) %>

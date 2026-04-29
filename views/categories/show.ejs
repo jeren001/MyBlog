@@ -1,0 +1,45 @@
+<%- include("../partials/head") %>
+<%- include("../partials/header") %>
+
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Category Detail</p>
+    <h1><%= category.name %></h1>
+    <p class="lead"><%= category.description || "No description provided for this category." %></p>
+    <div class="meta-line meta-wrap">
+      <span><%= category.article_count %> articles</span>
+      <span><%= category.created_at %></span>
+    </div>
+  </div>
+  <a class="button button-secondary" href="/categories">Back to Categories</a>
+</section>
+
+<section class="card">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Archive</p>
+      <h2>Articles in this Category</h2>
+    </div>
+  </div>
+
+  <% if (!articles.length) { %>
+    <p class="empty-state">This category does not contain any articles yet.</p>
+  <% } else { %>
+    <div class="stack-list">
+      <% articles.forEach((article) => { %>
+        <article class="list-card">
+          <div class="meta-line">
+            <span><%= article.reading_time %> min read</span>
+            <span><%= article.published_at %></span>
+          </div>
+          <h3>
+            <a href="/articles/<%= article.id %>"><%= article.title %></a>
+          </h3>
+          <p><%= article.excerpt || "No excerpt provided." %></p>
+        </article>
+      <% }) %>
+    </div>
+  <% } %>
+</section>
+
+<%- include("../partials/footer") %>

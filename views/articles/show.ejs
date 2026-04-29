@@ -1,0 +1,111 @@
+<%- include("../partials/head") %>
+<%- include("../partials/header") %>
+
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Article Detail</p>
+    <h1><%= article.title %></h1>
+    <p class="lead"><%= article.excerpt || "No excerpt provided." %></p>
+    <div class="meta-line meta-wrap">
+      <span><%= article.category_name || "Uncategorized" %></span>
+      <span><%= article.reading_time %> min read</span>
+      <span><%= article.published_at %></span>
+      <span><%= article.comment_count %> comments</span>
+    </div>
+  </div>
+  <div class="card-actions">
+    <a class="button button-secondary" href="/articles/<%= article.id %>/edit">Edit</a>
+    <a class="button button-secondary" href="/articles">Back to Articles</a>
+  </div>
+</section>
+
+<section class="detail-layout">
+  <article class="card detail-card">
+    <div class="article-body">
+      <% article.content.split(/\n{2,}/).forEach((paragraph) => { %>
+        <p><%= paragraph %></p>
+      <% }) %>
+    </div>
+  </article>
+
+  <aside class="stack-column">
+    <section class="card">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Discussion</p>
+          <h2 id="comments">Comments</h2>
+        </div>
+      </div>
+
+      <% if (!comments.length) { %>
+        <p class="empty-state">No approved comments yet.</p>
+      <% } else { %>
+        <div class="stack-list">
+          <% comments.forEach((comment) => { %>
+            <article class="list-card compact-card">
+              <div class="meta-line">
+                <span><%= comment.author_name %></span>
+                <span><%= comment.created_at %></span>
+              </div>
+              <p><%= comment.content %></p>
+            </article>
+          <% }) %>
+        </div>
+      <% } %>
+
+      <form class="stack-form comment-form" method="POST" action="/articles/<%= article.id %>/comments">
+        <label>
+          <span>Name</span>
+          <input type="text" name="authorName" placeholder="Your name" required />
+        </label>
+
+        <label>
+          <span>Email</span>
+          <input type="email" name="authorEmail" placeholder="you@example.com" />
+        </label>
+
+        <label>
+          <span>Comment</span>
+          <textarea
+            name="content"
+            rows="5"
+            placeholder="Leave a thoughtful comment"
+            required
+          ></textarea>
+        </label>
+
+        <button class="button" type="submit">Post Comment</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Suggested Reading</p>
+          <h2>Related Articles</h2>
+        </div>
+      </div>
+
+      <% if (!relatedArticles.length) { %>
+        <p class="empty-state">No related articles available.</p>
+      <% } else { %>
+        <div class="stack-list">
+          <% relatedArticles.forEach((relatedArticle) => { %>
+            <article class="list-card compact-card">
+              <div class="meta-line">
+                <span><%= relatedArticle.category_name || "Uncategorized" %></span>
+                <span><%= relatedArticle.published_at %></span>
+              </div>
+              <h3>
+                <a href="/articles/<%= relatedArticle.id %>"><%= relatedArticle.title %></a>
+              </h3>
+              <p><%= relatedArticle.excerpt || "No excerpt provided." %></p>
+            </article>
+          <% }) %>
+        </div>
+      <% } %>
+    </section>
+  </aside>
+</section>
+
+<%- include("../partials/footer") %>

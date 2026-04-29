@@ -1,0 +1,79 @@
+<%- include("../partials/head") %>
+<%- include("../partials/header") %>
+
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Taxonomy Module</p>
+    <h1>Category Management</h1>
+    <p class="lead">Create and review article groupings used throughout the blog archive.</p>
+  </div>
+</section>
+
+<section class="dashboard-grid">
+  <article class="card">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Create</p>
+        <h2>New Category</h2>
+      </div>
+    </div>
+
+    <% if (errorMessage) { %>
+      <div class="alert alert-error"><%= errorMessage %></div>
+    <% } %>
+
+    <form class="stack-form" method="POST" action="/categories">
+      <label>
+        <span>Name</span>
+        <input
+          type="text"
+          name="name"
+          value="<%= formValues.name %>"
+          placeholder="Category name"
+          required
+        />
+      </label>
+
+      <label>
+        <span>Description</span>
+        <textarea
+          name="description"
+          rows="5"
+          placeholder="Explain what belongs in this category"
+        ><%= formValues.description %></textarea>
+      </label>
+
+      <button class="button" type="submit">Create Category</button>
+    </form>
+  </article>
+
+  <article class="card">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Overview</p>
+        <h2>Existing Categories</h2>
+      </div>
+    </div>
+
+    <% if (!categories.length) { %>
+      <p class="empty-state">No categories have been created.</p>
+    <% } else { %>
+      <div class="stack-list">
+        <% categories.forEach((category) => { %>
+          <article class="list-card">
+            <div class="meta-line">
+              <span><%= category.article_count %> articles</span>
+              <span><%= category.created_at %></span>
+            </div>
+            <h3>
+              <a href="/categories/<%= category.id %>"><%= category.name %></a>
+            </h3>
+            <p><%= category.description || "No description available." %></p>
+          </article>
+        <% }) %>
+      </div>
+    <% } %>
+  </article>
+</section>
+
+<%- include("../partials/footer") %>

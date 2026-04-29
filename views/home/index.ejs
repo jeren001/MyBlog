@@ -1,0 +1,148 @@
+<%- include("../partials/head") %>
+  <%- include("../partials/header") %>
+
+    <section class="hero card">
+      <div class="hero-content">
+        <p class="eyebrow">Project Scaffold</p>
+        <h1>Blog</h1>
+        <p class="lead">
+          This starter wires together Express routing, SQLite models, EJS views,
+          and dedicated modules for article management, categories, comments, and
+          page statistics.
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="/articles">Manage Articles</a>
+          <a class="button button-secondary" href="/prototype/index.html">View Static Prototype</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-grid">
+      <article class="card stat-card">
+        <p class="stat-label">Tracked Pages</p>
+        <p class="stat-value">
+          <%= overview?.tracked_pages || 0 %>
+        </p>
+      </article>
+      <article class="card stat-card">
+        <p class="stat-label">Total Views</p>
+        <p class="stat-value">
+          <%= overview?.total_views || 0 %>
+        </p>
+      </article>
+      <article class="card stat-card">
+        <p class="stat-label">Last Visit</p>
+        <p class="stat-value stat-value-small">
+          <%= overview?.last_visited_at || "No tracked visits yet" %>
+        </p>
+      </article>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Articles</p>
+            <h2>Latest Posts</h2>
+          </div>
+          <a class="inline-link" href="/articles">View all</a>
+        </div>
+
+        <% if (!latestArticles.length) { %>
+          <p class="empty-state">No articles have been created yet.</p>
+          <% } else { %>
+            <div class="stack-list">
+              <% latestArticles.forEach((article)=> { %>
+                <article class="list-card">
+                  <div class="meta-line">
+                    <span>
+                      <%= article.category_name || "Uncategorized" %>
+                    </span>
+                    <span>
+                      <%= article.reading_time %> min read
+                    </span>
+                  </div>
+                  <h3>
+                    <a href="/articles/<%= article.id %>">
+                      <%= article.title %>
+                    </a>
+                  </h3>
+                  <p>
+                    <%= article.excerpt %>
+                  </p>
+                </article>
+                <% }) %>
+            </div>
+            <% } %>
+      </article>
+
+      <article class="card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Taxonomy</p>
+            <h2>Categories</h2>
+          </div>
+          <a class="inline-link" href="/categories">Manage</a>
+        </div>
+
+        <% if (!categories.length) { %>
+          <p class="empty-state">No categories available.</p>
+          <% } else { %>
+            <div class="stack-list">
+              <% categories.forEach((category)=> { %>
+                <article class="list-card compact-card">
+                  <h3>
+                    <a href="/categories/<%= category.id %>">
+                      <%= category.name %>
+                    </a>
+                  </h3>
+                  <p>
+                    <%= category.description || "No description provided." %>
+                  </p>
+                  <div class="meta-line">
+                    <span>
+                      <%= category.article_count %> articles
+                    </span>
+                  </div>
+                </article>
+                <% }) %>
+            </div>
+            <% } %>
+      </article>
+
+      <article class="card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Analytics</p>
+            <h2>Top Pages</h2>
+          </div>
+          <a class="inline-link" href="/stats">Statistics</a>
+        </div>
+
+        <% if (!topPages.length) { %>
+          <p class="empty-state">Page statistics will appear after visits are tracked.</p>
+          <% } else { %>
+            <div class="stack-list">
+              <% topPages.forEach((page)=> { %>
+                <article class="list-card compact-card">
+                  <div class="meta-line">
+                    <span>
+                      <%= page.path %>
+                    </span>
+                    <span>
+                      <%= page.view_count %> views
+                    </span>
+                  </div>
+                  <h3>
+                    <%= page.title || page.path %>
+                  </h3>
+                  <p>Last visited: <%= page.last_visited_at || "N/A" %>
+                  </p>
+                </article>
+                <% }) %>
+            </div>
+            <% } %>
+      </article>
+    </section>
+
+    <%- include("../partials/footer") %>

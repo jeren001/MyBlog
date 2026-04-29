@@ -1,0 +1,69 @@
+<%- include("../partials/head") %>
+<%- include("../partials/header") %>
+
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Feedback Module</p>
+    <h1>Comment Management</h1>
+    <p class="lead">Review recent comments associated with published articles.</p>
+  </div>
+</section>
+
+<section class="card filter-card">
+  <form class="filter-form" method="GET" action="/comments">
+    <label>
+      <span>Status</span>
+      <select name="status">
+        <option value="">All statuses</option>
+        <option value="approved" <%= filters.status === "approved" ? "selected" : "" %>>
+          Approved
+        </option>
+        <option value="pending" <%= filters.status === "pending" ? "selected" : "" %>>
+          Pending
+        </option>
+        <option value="spam" <%= filters.status === "spam" ? "selected" : "" %>>
+          Spam
+        </option>
+      </select>
+    </label>
+
+    <div class="filter-actions">
+      <button class="button" type="submit">Apply</button>
+      <a class="button button-secondary" href="/comments">Reset</a>
+    </div>
+  </form>
+</section>
+
+<section class="card">
+  <% if (!comments.length) { %>
+    <p class="empty-state">No comments found for the selected filter.</p>
+  <% } else { %>
+    <div class="stack-list">
+      <% comments.forEach((comment) => { %>
+        <article class="list-card">
+          <div class="meta-line meta-wrap">
+            <span><%= comment.author_name %></span>
+            <span><%= comment.status %></span>
+            <span><%= comment.created_at %></span>
+          </div>
+          <h3>
+            <a href="/articles/<%= comment.article_id %>"><%= comment.article_title %></a>
+          </h3>
+          <p><%= comment.content %></p>
+          <div class="card-actions">
+            <a class="button button-secondary" href="/articles/<%= comment.article_id %>#comments">
+              View Article
+            </a>
+            <form method="POST" action="/comments/<%= comment.id %>?_method=DELETE">
+              <button class="button button-danger" data-confirm="Delete this comment?" type="submit">
+                Delete
+              </button>
+            </form>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  <% } %>
+</section>
+
+<%- include("../partials/footer") %>

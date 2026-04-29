@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiet Notes | Personal Blog Prototype</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell" id="top">
+      <header class="topbar">
+        <a class="brand" href="#top">Quiet Notes</a>
+        <div class="topbar-actions">
+          <nav class="nav-links" aria-label="Primary navigation">
+            <a class="active" href="#home">Home</a>
+            <a href="#archives">Archives</a>
+            <a href="#about">About</a>
+          </nav>
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            type="button"
+            aria-pressed="false"
+            aria-label="Enable dark mode"
+          >
+            <span class="theme-toggle-copy">
+              <span class="theme-toggle-label">Dark mode</span>
+              <span class="theme-toggle-state" id="themeToggleState">Off</span>
+            </span>
+            <span class="toggle-track" aria-hidden="true">
+              <span class="toggle-thumb"></span>
+            </span>
+          </button>
+        </div>
+      </header>
+
+      <section class="hero" id="home">
+        <p class="eyebrow">Personal blog system</p>
+        <h1>Thoughtful posts, tidy archives, and a calm reading surface.</h1>
+        <p class="hero-copy">
+          This front-end prototype uses a light editorial layout with sample
+          content, responsive sidebars, and subtle interactions for a modern
+          personal publishing experience.
+        </p>
+      </section>
+
+      <div class="layout">
+        <aside class="sidebar sidebar-left" aria-label="News list">
+          <section class="panel">
+            <div class="panel-header">
+              <p class="panel-kicker">Updates</p>
+              <h2>News List</h2>
+            </div>
+            <ul class="news-list" id="newsList"></ul>
+          </section>
+        </aside>
+
+        <main class="content">
+          <section class="content-header" id="archives">
+            <div>
+              <p class="panel-kicker">Latest writing</p>
+              <h2>Recent Articles</h2>
+            </div>
+            <p class="article-count" id="articleCount"></p>
+          </section>
+          <div class="article-feed" id="articleFeed"></div>
+
+          <section
+            class="detail-section"
+            id="articleDetailSection"
+            aria-labelledby="articleDetailHeading"
+          >
+            <div class="content-header detail-section-header">
+              <div>
+                <p class="panel-kicker">Template preview</p>
+                <h2 id="articleDetailHeading">Article Detail</h2>
+              </div>
+              <p class="article-count">
+                Full article content, comments, and related reads
+              </p>
+            </div>
+            <div id="articleDetail"></div>
+          </section>
+        </main>
+
+        <aside class="sidebar sidebar-right" aria-label="Search and metadata">
+          <section class="panel">
+            <div class="panel-header">
+              <p class="panel-kicker">Explore</p>
+              <h2>Search</h2>
+            </div>
+            <form class="search-form" id="searchForm" role="search">
+              <label class="visually-hidden" for="searchInput">
+                Search articles
+              </label>
+              <input
+                id="searchInput"
+                type="search"
+                name="search"
+                placeholder="Search sample posts"
+                autocomplete="off"
+              />
+            </form>
+          </section>
+
+          <section class="panel">
+            <div class="panel-header">
+              <p class="panel-kicker">Browse</p>
+              <h2>Categories</h2>
+            </div>
+            <div class="category-list" id="categoryList"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-header">
+              <p class="panel-kicker">Topics</p>
+              <h2>Tag Cloud</h2>
+            </div>
+            <div class="tag-cloud" id="tagCloud"></div>
+          </section>
+
+          <section class="panel" id="about">
+            <div class="panel-header">
+              <p class="panel-kicker">Catch up</p>
+              <h2>Recent Posts</h2>
+            </div>
+            <ul class="recent-list" id="recentPosts"></ul>
+          </section>
+        </aside>
+      </div>
+
+      <footer class="site-footer">
+        <p>
+          Quiet Notes is a static front-end prototype built with sample data for
+          layout and interaction preview.
+        </p>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

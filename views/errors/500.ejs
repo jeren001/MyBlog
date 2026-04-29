@@ -1,0 +1,21 @@
+<%- include("../partials/head") %>
+<%- include("../partials/header") %>
+
+<section class="card error-card">
+  <p class="eyebrow">500</p>
+  <h1>Something failed on the server</h1>
+  <p class="lead">
+    The application encountered an unexpected error while handling the request.
+  </p>
+
+  <% if (error) { %>
+    <pre class="error-debug"><%= error.stack %></pre>
+  <% } %>
+
+  <div class="hero-actions">
+    <a class="button" href="/">Back to Home</a>
+    <a class="button button-secondary" href="/stats">View Statistics</a>
+  </div>
+</section>
+
+<%- include("../partials/footer") %>

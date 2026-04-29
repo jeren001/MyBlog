@@ -1,0 +1,13 @@
+</main>
+
+<footer class="site-footer">
+  <p>&copy; <%= year %> <%= siteName %>. MVC blog system starter scaffold.</p>
+</footer>
+
+<script src="/js/main.js"></script>
+<% (typeof pageScripts !== "undefined" ? pageScripts : []).forEach((src) => { %>
+  <script src="<%= src %>"></script>
+<% }) %>
+</div>
+</body>
+</html>
