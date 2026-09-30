@@ -1,7 +1,7 @@
 {
-  "name": "quiet-notes-blog-system",
+  "name": "jeren-blog-ai-assisted-web-project",
   "version": "1.0.0",
-  "description": "MVC blog system scaffold with Node.js, Express, SQLite, and EJS.",
+  "description": "Personal study blog for a university web project assignment, built with Node.js, Express, SQLite, and EJS.",
   "main": "server.js",
   "type": "commonjs",
   "scripts": {
@@ -27,11 +27,12 @@
     "express": "^4.21.2",
     "method-override": "^3.0.0",
     "sqlite": "^5.1.1",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^6.0.1"
   },
   "devDependencies": {
     "chai": "^4.5.0",
-    "mocha": "^10.8.2",
-    "nodemon": "^3.1.10"
+    "mocha": "^7.2.0",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.2.2"
   }
 }

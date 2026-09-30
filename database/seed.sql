@@ -91,7 +91,7 @@ INSERT OR IGNORE INTO page_statistics (
   last_visited_at
 )
 VALUES
-  ('/', 'Dashboard', 12, '2026-04-28 10:00:00'),
+  ('/', 'Jeren''s Blog', 12, '2026-04-28 10:00:00'),
   ('/articles', 'Article Management', 8, '2026-04-28 11:20:00'),
   ('/categories', 'Category Management', 4, '2026-04-27 18:35:00'),
   ('/stats', 'Page Statistics', 3, '2026-04-27 20:10:00');

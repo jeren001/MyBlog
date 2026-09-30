@@ -3,16 +3,16 @@
 
     <section class="hero card">
       <div class="hero-content">
-        <p class="eyebrow">Project Scaffold</p>
-        <h1>Blog</h1>
+        <p class="eyebrow">Editorial Dashboard</p>
+        <h1><%= siteName %></h1>
         <p class="lead">
-          This starter wires together Express routing, SQLite models, EJS views,
-          and dedicated modules for article management, categories, comments, and
-          page statistics.
+          A personal study blog built for a university web project assignment,
+          bringing together recent posts, archive structure, reader activity,
+          and day-to-day editorial work in one place.
         </p>
         <div class="hero-actions">
-          <a class="button" href="/articles">Manage Articles</a>
-          <a class="button button-secondary" href="/prototype/index.html">View Static Prototype</a>
+          <a class="button" href="/articles">Browse Articles</a>
+          <a class="button button-secondary" href="/stats">View Activity</a>
         </div>
       </div>
     </section>
@@ -42,8 +42,8 @@
       <article class="card">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">Articles</p>
-            <h2>Latest Posts</h2>
+            <p class="eyebrow">Writing Desk</p>
+            <h2>Latest Notes</h2>
           </div>
           <a class="inline-link" href="/articles">View all</a>
         </div>
@@ -79,8 +79,8 @@
       <article class="card">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">Taxonomy</p>
-            <h2>Categories</h2>
+            <p class="eyebrow">Archive</p>
+            <h2>Collections</h2>
           </div>
           <a class="inline-link" href="/categories">Manage</a>
         </div>
@@ -113,7 +113,7 @@
       <article class="card">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">Analytics</p>
+            <p class="eyebrow">Reader Activity</p>
             <h2>Top Pages</h2>
           </div>
           <a class="inline-link" href="/stats">Statistics</a>

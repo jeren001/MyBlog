@@ -1,16 +1,55 @@
 <header class="site-header">
   <div class="brand-block">
     <a class="brand" href="/"><%= siteName %></a>
-    <p class="brand-subtitle">Node.js + Express + SQLite + EJS MVC starter</p>
+    <p class="brand-subtitle">Personal study blog created for a university web project assignment</p>
   </div>
 
-  <nav class="site-nav" aria-label="Primary navigation">
-    <a class="<%= currentPath === '/' ? 'active' : '' %>" href="/">Home</a>
-    <a class="<%= currentPath.startsWith('/articles') ? 'active' : '' %>" href="/articles">Articles</a>
-    <a class="<%= currentPath.startsWith('/categories') ? 'active' : '' %>" href="/categories">Categories</a>
-    <a class="<%= currentPath.startsWith('/comments') ? 'active' : '' %>" href="/comments">Comments</a>
-    <a class="<%= currentPath.startsWith('/stats') ? 'active' : '' %>" href="/stats">Statistics</a>
-  </nav>
+  <div class="header-actions">
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a class="<%= currentPath === '/' ? 'active' : '' %>" href="/">Home</a>
+      <a class="<%= currentPath.startsWith('/articles') ? 'active' : '' %>" href="/articles">Articles</a>
+      <a class="<%= currentPath.startsWith('/categories') ? 'active' : '' %>" href="/categories">Categories</a>
+      <a class="<%= currentPath.startsWith('/comments') ? 'active' : '' %>" href="/comments">Comments</a>
+      <a class="<%= currentPath.startsWith('/stats') ? 'active' : '' %>" href="/stats">Statistics</a>
+    </nav>
+
+    <button
+      class="theme-toggle"
+      type="button"
+      data-theme-toggle
+      aria-pressed="false"
+      aria-label="Switch to dark mode"
+    >
+      <span class="theme-toggle-copy">
+        <span class="theme-toggle-label">Theme</span>
+        <span class="theme-toggle-state" data-theme-state>Light</span>
+      </span>
+      <span class="theme-toggle-visual" aria-hidden="true">
+        <span class="theme-toggle-glow"></span>
+        <span class="theme-toggle-star theme-toggle-star-one"></span>
+        <span class="theme-toggle-star theme-toggle-star-two"></span>
+        <svg
+          class="theme-icon theme-icon-sun"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="4.25"></circle>
+          <path d="M12 2.75v2.5M12 18.75v2.5M21.25 12h-2.5M5.25 12h-2.5M18.54 5.46l-1.77 1.77M7.23 16.77l-1.77 1.77M18.54 18.54l-1.77-1.77M7.23 7.23L5.46 5.46"></path>
+        </svg>
+        <svg
+          class="theme-icon theme-icon-moon"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path d="M14.24 3.27a.75.75 0 0 1 .88.91 7.35 7.35 0 0 0 8.7 8.7.75.75 0 0 1 .91.88A9.75 9.75 0 1 1 14.24 3.27Z"></path>
+        </svg>
+      </span>
+    </button>
+  </div>
 </header>
 
 <main class="page-content">

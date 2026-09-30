@@ -11,8 +11,11 @@ exports.index = asyncHandler(async (req, res) => {
     StatsModel.getTopPages(5),
   ]);
 
+  const title = "Jeren's Blog";
+  res.locals.title = title;
+
   res.render("home/index", {
-    title: "Dashboard",
+    title,
     latestArticles,
     categories,
     overview,

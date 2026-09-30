@@ -22,7 +22,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/prototype", express.static(path.join(__dirname, "prototype")));
 
 app.use((req, res, next) => {
   res.locals.siteName = appConfig.siteName;
@@ -30,6 +29,20 @@ app.use((req, res, next) => {
   res.locals.year = new Date().getFullYear();
   res.locals.pageStyles = [];
   res.locals.pageScripts = [];
+
+  const originalRender = res.render.bind(res);
+  res.render = (view, locals, callback) => {
+    if (typeof locals === "function") {
+      return originalRender(view, locals);
+    }
+
+    if (locals && typeof locals === "object" && locals.title) {
+      res.locals.title = locals.title;
+    }
+
+    return originalRender(view, locals, callback);
+  };
+
   next();
 });
 

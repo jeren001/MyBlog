@@ -1,6 +1,6 @@
-# Quiet Notes Blog System
+# Jeren's Blog
 
-Node.js + Express + SQLite + EJS project scaffold for a personal blog system using MVC architecture.
+Node.js + Express + SQLite + EJS project scaffold for a personal study blog created as a university web development assignment, using MVC architecture.
 
 ## Stack
 
@@ -69,10 +69,6 @@ Node.js + Express + SQLite + EJS project scaffold for a personal blog system usi
 |   |-- home/
 |   |-- partials/
 |   `-- stats/
-`-- prototype/
-    |-- index.html
-    |-- script.js
-    `-- styles.css
 ```
 
 ## Quick Start
@@ -100,7 +96,5 @@ npm run dev
 
 ## Notes
 
-- The legacy front-end prototype from the previous step is preserved under `prototype/`.
-- The Express app also serves that prototype at `/prototype/index.html`.
 - SQLite schema creation is handled by `database/schema.sql`.
 - Seed content for categories, articles, comments, and statistics is handled by `database/seed.sql`.
